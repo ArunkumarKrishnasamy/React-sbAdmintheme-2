@@ -1,39 +1,52 @@
-import React from "react";
+import React,{useContext} from "react";
 import { Link } from "react-router-dom";
-let products = [
-  {
-    ProductName: "iPhone 11",
-    Brand: "Apple",
-    Price: "$100000",
-    Address: "Chennai",
-  },
-  {
-    ProductName: "Galaxy S7",
-    Brand: "Samsung",
-    Price: "$25000",
-    Address: "Bangalore",
-  },
-  {
-    ProductName: "Experia max",
-    Brand: "Sony",
-    Price: "$350000",
-    Address: "Delhi",
-  },
-  { ProductName: "V20 Pro", Brand: "Vivo", Price: "$40000", Address: "Mumbai" },
-  {
-    ProductName: "F17 Reno",
-    Brand: "Oppo",
-    Price: "$550000",
-    Address: "Kolkata",
-  },
-];
+import UserContext from "./UserContext";
+// let productlist = [
+//   {
+//     id: "Product-1",
+//     name: "iPhone 11",
+//     brand: "Apple",
+//     price: "$100000",
+//     address: "Chennai",
+//   },
+//   {
+//     id: "Product-2",
+//     name: "Galaxy S7",
+//     brand: "Samsung",
+//     price: "$25000",
+//     address: "Bangalore",
+//   },
+//   {
+//     id: "Product-3",
+//     name: "Experia max",
+//     brand: "Sony",
+//     price: "$350000",
+//     address: "Delhi",
+//   },
+//   {
+//     id: "Product-4",
+//     name: "V20 Pro",
+//     brand: "Vivo",
+//     price: "$40000",
+//     address: "Mumbai",
+//   },
+//   {
+//     id: "Product-5",
+//     name: "F17 Reno",
+//     brand: "Oppo",
+//     price: "$550000",
+//     address: "Kolkata",
+//   },
+// ];
 function Products() {
+  const productData= useContext(UserContext)
+ 
   return (
     <div>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 className="h3 mb-0 text-gray-800">Product Details</h1>
         <Link
-         to={"/products/create-product"}
+          to={"/products/create-product"}
           className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
         >
           <i className="fas fa-download fa-sm text-white-50"></i> Create New
@@ -58,20 +71,21 @@ function Products() {
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => {
+              {
+             productData.products.map((product,index) => {
                 return (
                   <tr>
-                    <td>{product.ProductName}</td>
-                    <td>{product.Brand}</td>
-                    <td>{product.Price}</td>
-                    <td>{product.Address}</td>
+                    <td>{product.name}</td>
+                    <td>{product.brand}</td>
+                    <td>{product.price}</td>
+                    <td>{product.address}</td>
                     <td>
                       {" "}
-                      <Link to={"/products/view-product"}>
+                      <Link to={`/products/view-product/${index}`}>
                         {" "}
                         <button className="btn btn-primary mx-2"> View</button>
                       </Link>
-                      <Link to={"/products/edit-product"}>
+                      <Link to={`/products/edit-product/${index}`}>
                         {" "}
                         <button className="btn btn-warning me-2"> Edit</button>
                       </Link>

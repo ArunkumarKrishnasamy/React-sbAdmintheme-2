@@ -1,89 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-let users = [
-  {
-    Name: "Tiger Nixon",
-    Position: "System Architect",
-    Office: "Edinburgh",
-    Age: 61,
-    Startdate: "2011/04/25",
-    Salary: 320800,
-  },
-  {
-    Name: "Garrett Winters",
-    Position: "Accountant",
-    Office: "Tokyo",
-    Age: 63,
-    Startdate: "2011/07/25",
-    Salary: 170750,
-  },
-  {
-    Name: "Ashton Cox",
-    Position: "Junior Technical Author",
-    Office: "San Francisco",
-    Age: 60,
-    Startdate: "2009/01/12",
-    Salary: 86800,
-  },
-  {
-    Name: "Cedric Kelly",
-    Position: "Senior Javascript Developer",
-    Office: "Edinburgh",
-    Age: 22,
-    Startdate: "2012/03/29",
-    Salary: 320800,
-  },
-  {
-    Name: "Tiger Nixon",
-    Position: "System Architect",
-    Office: "Edinburgh",
-    Age: 61,
-    Startdate: "2011 / 04 / 25",
-    Salary: 320800,
-  },
-  {
-    Name: "Garrett Winters",
-    Position: "Accountant",
-    Office: "Tokyo",
-    Age: 63,
-    Startdate: "2011/07/25",
-    Salary: 170750,
-  },
-  {
-    Name: "Tiger Nixon",
-    Position: "System Architect",
-    Office: "Edinburgh",
-    Age: 61,
-    Startdate: "2012/03/29",
-    Salary: 320800,
-  },
-  {
-    Name: "Ashton Cox",
-    Position: "Junior Technical Author",
-    Office: "San Francisco",
-    Age: 60,
-    Startdate: "2009/01/12",
-    Salary: 86800,
-  },
-  {
-    Name: "Garrett Winters",
-    Position: "Accountant",
-    Office: "Tokyo",
-    Age: 63,
-    Startdate: "2011/07/25",
-    Salary: 170750,
-  },
-  {
-    Name: "Tiger Nixon",
-    Position: "System Architect",
-    Office: "Edinburgh",
-    Age: 61,
-    Startdate: "2012/03/29",
-    Salary: 320800,
-  },
-];
+import UserContext from "./UserContext";
 
 function Users() {
+  let userData = useContext(UserContext);
+
   return (
     <div>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -125,19 +46,25 @@ function Users() {
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => {
+              {userData.users.map((user,index) => {
                 return (
                   <tr>
-                    <td>{user.Name}</td>
-                    <td>{user.Position}</td>
-                    <td>{user.Office}</td>
-                    <td>{user.Age}</td>
-                    <td>{user.Startdate}</td>
-                    <td>{user.Salary}</td>
+                    <td>{user.name} </td>
+                    <td>{user.position}</td>
+                    <td>{user.office}</td>
+                    <td>{user.age}</td>
+                    <td>{user.startdate}</td>
+                    <td>{user.salary}</td>
                     <td>
                       {" "}
-                    <Link to={"/users/view-user"}>  <button className="btn btn-primary mx-2"> View</button></Link>
-                     <Link to={"/users/edit-user"}> <button className="btn btn-warning me-2"> Edit</button></Link>
+                      <Link to={`/users/view-user/${index}`}>
+                        {" "}
+                        <button className="btn btn-primary mx-2"> View</button>
+                      </Link>
+                      <Link to={`/users/edit-user/${index}`}>
+                        {" "}
+                        <button className="btn btn-warning me-2"> Edit</button>
+                      </Link>
                       <button className="btn btn-danger me-2"> Delete</button>
                     </td>
                   </tr>

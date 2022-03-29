@@ -1,36 +1,38 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import DashboardCard from "./DashboardCard"
+import DashboardCard from "./DashboardCard";
+
 let cards = [
   {
     title: " Earnings (Monthly)",
     value: "$40000",
-    border:"border-left-primary",
-    titlecolor :"text-primary",
-    icon : "fas fa-calendar"
+    border: "border-left-primary",
+    titlecolor: "text-primary",
+    icon: "fas fa-calendar",
   },
   {
     title: "Earnings (Annual)",
     value: "$215000",
-    border: "border-left-success" ,
-    titlecolor:"text-success ",
-    icon  : "fas fa-dollar-sign"
+    border: "border-left-success",
+    titlecolor: "text-success ",
+    icon: "fas fa-dollar-sign",
   },
   {
     title: "Tasks",
     isProgressbar: true,
-    border : "border-left-info",
-    titlecolor:"text-info",
-    inProgress : true
+    border: "border-left-info",
+    titlecolor: "text-info",
+    inProgress: true,
   },
   {
     title: "Pending Request",
     value: 18,
-    border : "border-left-warning",
-    titlecolor:"text-warning",
-    icon  : "fas fa-comments"
+    border: "border-left-warning",
+    titlecolor: "text-warning",
+    icon: "fas fa-comments",
   },
 ];
+
 function Dashboard() {
   return (
     <>
@@ -45,14 +47,12 @@ function Dashboard() {
         </Link>
       </div>
       <div className="container-fluid">
-      <div className="row">
-    {    
-    cards.map((card) => {
-   return <DashboardCard card={card} key ={card.title}/>
-    })
-}
-</div>
-    </div>
+        <div className="row">
+          {cards.map((card) => {
+            return <DashboardCard card={card} key={card.title} />;
+          })}
+        </div>
+      </div>
     </>
   );
 }

@@ -10,10 +10,19 @@ import Products from "./Products";
 import Chart from "./Chart";
 import CreateUser from "./CreateUser";
 import CreateProduct from "./CreateProduct";
+import ViewUser from "./ViewUser";
+import EditUser from "./EditUser";
+import ViewProduct from "./ViewProduct";
+import EditProduct from "./EditProduct";
+import { UserProvider } from "./UserContext";
+import { useState } from "react";
 function App() {
+  const [users,setUsers] =useState([]);
+  const [products,setProducts]= useState([]) ;
   return (
     <BrowserRouter>
       <div id="wrapper">
+        <UserProvider value={{users,setUsers,products,setProducts}}>
         <Sidebar />
         <div id="content-wrapper" className="d-flex flex-column">
           <div id="content">
@@ -29,10 +38,21 @@ function App() {
                   path="/products/create-product"
                   element={<CreateProduct />}
                 />
+                <Route path="/users/view-user/:id" element={<ViewUser />} />
+                <Route path="/users/edit-user/:id" element={<EditUser />} />
+                <Route
+                  path="/products/view-product/:id"
+                  element={<ViewProduct />}
+                />
+                <Route
+                  path="/products/edit-product/:id"
+                  element={<EditProduct />}
+                />
               </Routes>
             </div>
           </div>
         </div>
+        </UserProvider>
       </div>
     </BrowserRouter>
   );
